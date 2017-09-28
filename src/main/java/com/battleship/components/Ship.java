@@ -70,7 +70,7 @@ public class Ship {
      *
      * @return the Rectangle that outline ship;
      */
-    public Rectangle outLineTheShip() {
+    public Rectangle outlineTheShip() {
         Point beginOfSquare = new Point(position.getX(), position.getY());
 
         int shipShift = shipType.getDeckerCount() - 1;

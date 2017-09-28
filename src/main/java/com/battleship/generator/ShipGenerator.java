@@ -48,7 +48,7 @@ public class ShipGenerator {
             }
         }
 
-        throw new RuntimeException("not enough space to put new ship of type: " + shipType);
+        throw new RuntimeException("Not enough space to put new ship of type: " + shipType);
 
     }
 
@@ -61,7 +61,7 @@ public class ShipGenerator {
             return new Ship(positionX, positionY, shipType, direction);
         }
 
-        Pair<Integer, Integer> lastCoordinatesPair = getPairOfLatestValidCoordinates(fieldSize, shipType, direction);
+        Pair<Integer, Integer> lastCoordinatesPair = getPairOfLastCoordinates(fieldSize, shipType, direction);
 
         int maxX = lastCoordinatesPair.getLeft();
         int maxY = lastCoordinatesPair.getRight();
@@ -72,7 +72,22 @@ public class ShipGenerator {
 
     }
 
-    private Pair<Integer, Integer> getPairOfLatestValidCoordinates(int fieldSize, ShipType shipType, Direction direction) {
+    /**
+     * Explanation:
+     * We have 10x10 field, 4 - decker ship that need to place horizontally.
+     * Indexes numerates from 0;
+     * <p>
+     * Tha latest position of X = 6 (9 - (4 - 1) one deck excluded) <br>
+     * The latest position of Y = 9 <br>
+     * That means: the last coordinate is: [6, 9] both included.
+     * </p>
+     *
+     * @param fieldSize size of field.
+     * @param shipType  type of ship (number of decker).
+     * @param direction indicates how ship should be placed on field.
+     * @return Pair of limit values of X and Y that can be used for this type of ship on current field.
+     */
+    private Pair<Integer, Integer> getPairOfLastCoordinates(int fieldSize, ShipType shipType, Direction direction) {
         int shipLength = shipType.getDeckerCount();
         // because coordinates starts from 0
         int limitPosition = fieldSize - 1;

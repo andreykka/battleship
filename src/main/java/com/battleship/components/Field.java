@@ -25,7 +25,7 @@ public class Field {
     }
 
     public boolean canBePlaced(Ship ship) {
-        Rectangle newShipPrivateRectangle = ship.outLineTheShip();
+        Rectangle newShipPrivateRectangle = ship.outlineTheShip();
         return ships.stream()
                 .map(Ship::outlineTheShipAndItTerritory)
                 .filter(existingShipRectangle -> existingShipRectangle.intersectsWith(newShipPrivateRectangle))
